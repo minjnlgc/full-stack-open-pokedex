@@ -14,14 +14,14 @@ jobs:
           echo "Hello World!"
 
   now_date_job:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Now it is
         run: |
           date
   
   dir_content_job:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Directory content
         run: |
