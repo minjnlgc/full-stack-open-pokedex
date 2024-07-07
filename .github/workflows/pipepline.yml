@@ -23,7 +23,7 @@ jobs:
       - name: build
         run: npm run build
 
-      - name: test
+      - name: Run tests
         run: npm run test
 
       - name: Run e2e tests
@@ -32,3 +32,6 @@ jobs:
           npm install
           npx playwright install --with-deps
           npm run test
+      
+      - name: Trigger deployment
+        run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
