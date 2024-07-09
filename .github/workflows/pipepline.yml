@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: github context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -70,3 +70,8 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
+
+      - name: the head commit message
+        env:
+          HEAD_COMMIT_MESSAGES: ${{ toJson(github.event.head_commit.message) }}
+        run: echo "$HEAD_COMMIT_MESSAGES"
