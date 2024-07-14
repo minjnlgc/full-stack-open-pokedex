@@ -56,12 +56,12 @@ jobs:
           details: Test failed .^QAQ^.
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       
-      - name: Test Cancelled .^0w0^.
+      - name: Test Cancelled 
         uses: rjstone/discord-webhook-notify@v1
         if: cancelled()
         with:
           severity: warn
-          details: Test cancelled 
+          details: Test cancelled .^0w0^.
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       
   tag_release:

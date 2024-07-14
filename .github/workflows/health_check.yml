@@ -1,0 +1,40 @@
+name: Health check
+
+on:
+  schedule:
+    - cron: "45 17 * * *"
+
+jobs:
+  health_check:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regular health check
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: https://full-stack-open-pokedex-bvoj.onrender.com/health
+      
+      - name: Health check info
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+          severity: info
+          details: health check succeeded! ฅ^•⩊•^ฅ
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      
+      - name: Health check failure
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          details: Health check failed .^QAQ^....
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      
+      - name: Health check Cancelled 
+        uses: rjstone/discord-webhook-notify@v1
+        if: cancelled()
+        with:
+          severity: warn
+          details: Health check cancelled .^0w0^.
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
