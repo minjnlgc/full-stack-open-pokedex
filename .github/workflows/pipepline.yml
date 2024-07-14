@@ -58,7 +58,7 @@ jobs:
       
       - name: Test Cancelled .^0w0^.
         uses: rjstone/discord-webhook-notify@v1
-        if: canceled()
+        if: cancelled()
         with:
           severity: warn
           details: Test cancelled 
